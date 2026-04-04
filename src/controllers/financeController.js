@@ -17,27 +17,21 @@ export const addFinanceData = asyncHandler(async (req, res) => {
 
 export const updateFinanceData = asyncHandler(async (req, res) => {
   const { amount, type, category, date } = req.body;
-  const { financeId } = req.params;
-  const financeData = Finance.findById(financeId);
-  if (!financeData) {
-    const error = new Error("Transaction not found");
-    error.statusCode = 404;
-    throw error;
-  }
+  const financeData = req.finance;
 
- 
+  financeData.amount = amount ?? financeData.amount;
+  financeData.type = type ?? financeData.type;
+  financeData.category = category ?? financeData.category;
+  financeData.date = date ? new Date(date) : financeData.date;
+
+  await financeData.save();
+
+  res.json({ message: "Transaction updated", data: financeData });
 });
 
 export const deleteFinance = asyncHandler(async (req, res) => {
-  const { financeId } = req.params;
+  const financeData = req.finance;
 
-  const finance = await Finance.findById(financeId);
-
-  if (!finance) {
-    const error = new Error("Transaction not found");
-    error.status = 404;
-    throw error;
-  }
-  await finance.deleteOne();
-  res.json({ succuss: true, message: "finance deleted" });
+  await financeData.deleteOne();
+  res.json({ success: true, message: "finance deleted" });
 });
