@@ -3,7 +3,8 @@ import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const isUserOwner = asyncHandler(async (req, res, next) => {
-  const userData = await User.findById(req.params.id);
+  const { userId } = req.params;
+  const userData = await User.findById(userId);
 
   if (!userData) {
     const error = new Error("User Not found");
@@ -13,7 +14,7 @@ export const isUserOwner = asyncHandler(async (req, res, next) => {
 
   if (
     req.user.role !== "Admin" &&
-    userData._id.toString() !== req.user._id.toString()
+    userData._id.toString() !== req.user.id
   ) {
     const error = new Error("Forbidden");
     error.statusCode = 403;
@@ -36,7 +37,7 @@ export const isFinaceOwner = asyncHandler(async (req, res, next) => {
 
   if (
     req.user.role !== "Admin" &&
-    financeData.createdBy.toString() !== req.user._id.toString()
+    financeData.createdBy.toString() !== req.user.id
   ) {
     const error = new Error("Not authorized");
     error.statusCode = 403;

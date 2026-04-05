@@ -12,7 +12,7 @@ export const addFinanceData = asyncHandler(async (req, res) => {
     createdBy: req.user._id,
   });
 
-  res.status(201).json({ message: "Data added", FinanceData });
+  res.status(201).json({ message: "Finance Data added", FinanceData });
 });
 
 export const updateFinanceData = asyncHandler(async (req, res) => {
@@ -26,7 +26,7 @@ export const updateFinanceData = asyncHandler(async (req, res) => {
 
   await financeData.save();
 
-  res.json({ message: "Transaction updated", data: financeData });
+  res.json({ message: "finance updated", data: financeData });
 });
 
 export const deleteFinance = asyncHandler(async (req, res) => {
