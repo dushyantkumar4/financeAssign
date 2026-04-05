@@ -25,7 +25,7 @@ export const isUserOwner = asyncHandler(async (req, res, next) => {
   next();
 });
 //finance owner middleware
-export const isFinaceOwner = asyncHandler(async (req, res, next) => {
+export const isFinanceOwner = asyncHandler(async (req, res, next) => {
   const { financeId } = req.params;
   const financeData = await Finance.findById(financeId);
 

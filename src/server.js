@@ -6,6 +6,7 @@ dotenv.config();
 
 import userRoute from "./routes/user.router.js";
 import financeRoute from "./routes/finance.route.js";
+import dashboard from "./routes/dashboard.route.js";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -14,6 +15,7 @@ app.use(express.json());
 //all routes 
 app.use("/api", userRoute);
 app.use("/api",financeRoute);
+app.use("/api",dashboard);
 
 
 app.use(errHandler);
