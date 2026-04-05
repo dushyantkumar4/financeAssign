@@ -10,7 +10,7 @@ import { isFinaceOwner } from "../middlewares/isOwner.js";
 const router = Router();
 
 router.post("/amount", protect, authorize("Analyst", "Admin"), addFinanceData);
-router.put("/amount/:finaceId", protect, isFinaceOwner, updateFinanceData);
+router.put("/amount/:financeId", protect, isFinaceOwner, updateFinanceData);
 router.delete("/amount/:financeId", protect, isFinaceOwner, deleteFinance);
 
 export default router;

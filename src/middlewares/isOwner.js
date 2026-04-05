@@ -1,7 +1,7 @@
 import Finance from "../models/finance.model.js";
 import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
-
+// user owner middleware
 export const isUserOwner = asyncHandler(async (req, res, next) => {
   const { userId } = req.params;
   const userData = await User.findById(userId);
@@ -24,7 +24,7 @@ export const isUserOwner = asyncHandler(async (req, res, next) => {
 
   next();
 });
-
+//finance owner middleware
 export const isFinaceOwner = asyncHandler(async (req, res, next) => {
   const { financeId } = req.params;
   const financeData = await Finance.findById(financeId);

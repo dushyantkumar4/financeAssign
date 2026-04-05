@@ -11,7 +11,7 @@ export const register = asyncHandler(async (req, res) => {
   const userExist = await User.findOne({ email });
   if (userExist) {
     const error = new Error("user already exist");
-    error.status(403);
+    error.status=403;
     throw error;
   }
 
@@ -34,13 +34,13 @@ export const login = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
   if (!user) {
     const error = new Error("Invalid email");
-    error.status(401);
+    error.status=401;
     throw error;
   }
   const matchPass = await bcrypt.compare(password, user.password);
   if (!matchPass) {
     const error = new Error("Invalid password");
-    error.status(401);
+    error.status=401;
     throw error;
   }
   const token = generateToken(user._id, user.role);
@@ -89,7 +89,7 @@ export const updateRole = asyncHandler(async (req, res) => {
   const user = await User.findById(userId);
   if (!user) {
     const err = new Error("user not found");
-    err.statusCode(404);
+    err.statusCode = 404;
     throw err;
   }
   user.role = role;
