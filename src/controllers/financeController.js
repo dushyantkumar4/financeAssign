@@ -1,6 +1,7 @@
 import Finance from "../models/finance.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
+// add finance data 
 export const addFinanceData = asyncHandler(async (req, res) => {
   const { amount, type, category, date } = req.body;
 
@@ -15,6 +16,7 @@ export const addFinanceData = asyncHandler(async (req, res) => {
   res.status(201).json({ message: "Finance Data added", FinanceData });
 });
 
+// update finance data 
 export const updateFinanceData = asyncHandler(async (req, res) => {
   const { amount, type, category, date } = req.body;
   const financeData = req.finance;
@@ -29,9 +31,9 @@ export const updateFinanceData = asyncHandler(async (req, res) => {
   res.json({ message: "finance updated", data: financeData });
 });
 
+//delete finance data
 export const deleteFinance = asyncHandler(async (req, res) => {
   const financeData = req.finance;
-
   await financeData.deleteOne();
   res.json({ success: true, message: "finance deleted" });
 });

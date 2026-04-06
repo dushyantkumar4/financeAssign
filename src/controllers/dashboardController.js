@@ -1,10 +1,20 @@
 import Finance from "../models/finance.model.js";
+import User from "../models/user.model.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
-export const getSummery = asyncHandler(async (req, res) => {
+export const dashboardData = asyncHandler(async (req, res) => {
+  const totalUsers = await User.countDocuments();
+
+  const activeUsers = await User.countDocuments({
+    status: "active",
+  });
+  res.json({ totalUsers, activeUsers });
+});
+
+export const getSummary = asyncHandler(async (req, res) => {
   const targetUserId = req.targetUser ? req.targetUser._id : req.user._id;
   const { category, days } = req.query;
-  
+
   //summury of the finance
   const data = await Finance.aggregate([
     {
