@@ -1,3 +1,7 @@
+# Host url is https://financeassign.onrender.com
+
+(hosted on render)
+
 # Tech Stack
 
 Node.js
@@ -144,3 +148,6 @@ GET baseUrl/api/dashboard
 # get Dashboard summery
 
 GET baseUrl/api/dashboard/:userId
+
+- Options => we can also provide the category , days (if want to filter )
+  GET baseUrl/dashboard/:userId?category=food&days=1
