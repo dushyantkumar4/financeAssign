@@ -7,4 +7,5 @@ const router = Router();
 
 router.get("/dashboard/:userId",protect,isUserOwner,getSummery);
 
+
 export default router;

@@ -58,7 +58,7 @@ export const getAllUser = asyncHandler(async (req, res) => {
 //update user
 export const updateUser = asyncHandler(async (req, res) => {
   const { name, password, status } = req.body;
-  const userData = req.user;
+  const userData = req.targetUser || req.user;
 
   userData.name = name ?? userData.name;
   if (password) {
@@ -75,7 +75,7 @@ export const updateUser = asyncHandler(async (req, res) => {
 });
 // delete user
 export const deleteUser = asyncHandler(async (req, res) => {
-  const userData = req.user;
+  const userData = req.targetUser || req.user;
 
   // first delete all the finance createdt by user
   await Finance.deleteMany({ createdBy: userData._id });

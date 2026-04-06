@@ -20,7 +20,7 @@ export const isUserOwner = asyncHandler(async (req, res, next) => {
     error.statusCode = 403;
     throw error;
   }
-  req.user = userData;
+  req.targetUser = userData;
 
   next();
 });
