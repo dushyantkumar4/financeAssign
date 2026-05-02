@@ -35,6 +35,7 @@ export const getSummary = asyncHandler(async (req, res) => {
     if (item._id === "income") totalIncome = item.total;
     if (item._id === "expense") totalExpense = item.total;
   });
+  
   const now = new Date();
   const startOfMonth = new Date(now.getFullYear(), now.getMonth(), 1);
   const endOfMonth = new Date(now.getFullYear(), now.getMonth() + 1, 1);
